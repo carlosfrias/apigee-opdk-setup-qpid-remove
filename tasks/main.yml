@@ -1,0 +1,20 @@
+---
+# tasks file for /Users/carlosfrias/apigee-workspace/opdk-workspace/apigee-opdk-setup-qpid-remove
+- name: Remove qpid from consumer groups
+  delegate_to: '{{ inventory_hostname }}'
+  uri:
+    user: '{{ opdk_user_email }}'
+    password: '{{ opdk_user_pass }}'
+    method: DELETE
+    url: http://{{ local_mgmt_ip }}:8080/v1/analytics/groups/ax/{{ ax_group }}/consumer-groups/{{ consumer_group }}/consumers/{{ edge_qs_self.uUID }}
+    body_format: json
+
+- name: Remove qpid server
+  uri:
+    user: '{{ opdk_user_email }}'
+    password: '{{ opdk_user_pass }}'
+    method: DELETE
+    body_format: json
+    url: http://{{ local_mgmt_ip }}:8080/v1/analytics/groups/ax/{{ ax_group }}/servers?uuid={{ edge_qs_self.uUID }}&type={{ edge_qs_self.type[0] }}
+
+
