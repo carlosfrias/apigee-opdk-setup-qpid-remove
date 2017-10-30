@@ -3,8 +3,8 @@
 - name: Set attributes if available
   ignore_errors: true
   set_fact:
-    uuid: "{{ hostvars[groups[qpid_group_name][0]].edge_qs_self.uUID }}"
-    server_type: "{{ hostvars[groups[qpid_group_name][0]].edge_qs_self.type[0] }}"
+    uuid: "{{ edge_qs_self.uUID }}"
+    server_type: "{{ edge_qs_self.type[0] }}"
 
 - name: Assert that attributes are available.
   assert:
