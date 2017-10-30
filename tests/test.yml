@@ -3,3 +3,14 @@
   remote_user: root
   roles:
     - /Users/carlosfrias/apigee-workspace/opdk-workspace/apigee-opdk-setup-qpid-remove
+
+- hosts: ms
+  gather_facts: no
+  vars_files:
+  - ~/.apigee-secure/credentials.yml
+  roles:
+    - { role: apigee-opdk-setup-qpid-remove,
+        ax_group: axgroup001,
+        consumer_group: consumer-group-001
+      }
+
