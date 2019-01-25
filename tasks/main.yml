@@ -20,18 +20,16 @@
 
 - name: Remove qpid from consumer groups
   uri:
+    url: http://{{ local_mgmt_ip }}:{{ ms_port }}/v1/analytics/groups/ax/{{ ax_group }}/consumer-groups/{{ consumer_group }}/consumers/{{ uuid }}
+    method: DELETE
     user: '{{ opdk_user_email }}'
     password: '{{ opdk_user_pass }}'
-    method: DELETE
-    body_format: json
-    url: http://{{ local_mgmt_ip }}:8080/v1/analytics/groups/ax/{{ ax_group }}/consumer-groups/{{ consumer_group }}/consumers/{{ uuid }}
 
 - name: Remove qpid server
   uri:
+    url: http://{{ local_mgmt_ip }}:{{ ms_port }}/v1/analytics/groups/ax/{{ ax_group }}/servers?uuid={{ uuid }}&type={{ server_type }}
+    method: DELETE
     user: '{{ opdk_user_email }}'
     password: '{{ opdk_user_pass }}'
-    method: DELETE
-    body_format: json
-    url: http://{{ local_mgmt_ip }}:8080/v1/analytics/groups/ax/{{ ax_group }}/servers?uuid={{ uuid }}&type={{ server_type }}
 
 
